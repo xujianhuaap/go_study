@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d2bbaa7-515b-4818-b259-9ce61d16bbc0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PPDai/main.go" afterPath="$PROJECT_DIR$/PPDai/main.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,10 +25,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PPDai/main.go">
+        <entry file="file://$PROJECT_DIR$/ppdai/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="218">
+              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding>
                 <element signature="e#14#141#0" expanded="true" />
               </folding>
@@ -47,7 +47,7 @@
         </entry>
       </file>
       <file leaf-file-name="app.conf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PPDai/conf/app.conf">
+        <entry file="file://$PROJECT_DIR$/ppdai/conf/app.conf">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
@@ -57,7 +57,7 @@
         </entry>
       </file>
       <file leaf-file-name="default.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PPDai/controllers/default.go">
+        <entry file="file://$PROJECT_DIR$/ppdai/controllers/default.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
@@ -67,7 +67,7 @@
         </entry>
       </file>
       <file leaf-file-name="router.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PPDai/routers/router.go">
+        <entry file="file://$PROJECT_DIR$/ppdai/routers/router.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="52" />
@@ -112,6 +112,7 @@
         <option value="$PROJECT_DIR$/PPDai/static/test" />
         <option value="$PROJECT_DIR$/PPDai/conf/app.conf" />
         <option value="$PROJECT_DIR$/PPDai/main.go" />
+        <option value="$PROJECT_DIR$/ppdai/main.go" />
       </list>
     </option>
   </component>
@@ -179,7 +180,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PPDai" />
+              <option name="myItemId" value="ppdai" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -583,10 +584,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32756633" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -767,14 +768,14 @@
     <entry file="file://$PROJECT_DIR$/github.com/xujianhuaap/golang/public/test" />
     <entry file="file://$PROJECT_DIR$/PPDai/static/test" />
     <entry file="file://$PROJECT_DIR$/github.com/xujianhuaap/golang/main/main.go" />
-    <entry file="file://$PROJECT_DIR$/PPDai/tests/default_test.go">
+    <entry file="file://$PROJECT_DIR$/ppdai/tests/default_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PPDai/routers/router.go">
+    <entry file="file://$PROJECT_DIR$/ppdai/routers/router.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="52" />
@@ -783,7 +784,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.exe" />
-    <entry file="file://$PROJECT_DIR$/PPDai/controllers/default.go">
+    <entry file="file://$PROJECT_DIR$/ppdai/controllers/default.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
@@ -791,7 +792,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PPDai/conf/app.conf">
+    <entry file="file://$PROJECT_DIR$/ppdai/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
@@ -799,14 +800,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PPDai/PPDai.exe">
+    <entry file="file://$PROJECT_DIR$/ppdai/PPDai.exe">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PPDai/views/index.tpl">
+    <entry file="file://$PROJECT_DIR$/ppdai/views/index.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -821,10 +822,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PPDai/main.go">
+    <entry file="file://$PROJECT_DIR$/ppdai/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="218">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding>
             <element signature="e#14#141#0" expanded="true" />
           </folding>

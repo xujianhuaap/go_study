@@ -1,7 +1,6 @@
 package main
 
 import (
-	_"github.com/xujianhuaap/GoStudy/ppdai/routers"
 	"github.com/astaxie/beego"
 	"github.com/beego/bee/testdata/router"
 )
