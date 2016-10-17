@@ -2,15 +2,14 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/beego/bee/testdata/router"
+	_"github.com/xujianhuaap/gostudy/ppdai/routers"
+
 )
 func main() {
-	beego.Router("/",&router.Router{})
-	beego.BConfig.WebConfig.DirectoryIndex=true
-	beego.SetStaticPath("/apk","apk")
 	beego.Run()
 }
 
 func init() {
-
+	beego.BConfig.WebConfig.DirectoryIndex=true
+	beego.SetStaticPath("/apk","apk")
 }
