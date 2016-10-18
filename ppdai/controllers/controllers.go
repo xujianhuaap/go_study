@@ -6,8 +6,7 @@ type FunnyController struct {
 	beego.Controller
 }
 
-func (c FunnyController)Get()  {
-	c.Data["email"]="xujianhuaap@gmail.com"
-	c.TplName=""
-	c.Ctx.WriteString("JAVA")
+func (c *FunnyController)Get()  {
+	c.Data["Email"]="xujianhuaap@gmail.com"
+	c.TplName="index.tpl"
 }
