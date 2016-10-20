@@ -8,5 +8,7 @@ type FunnyController struct {
 
 func (c *FunnyController)Get()  {
 	c.Data["Email"]="xujianhuaap@gmail.com"
-	c.TplName="index.tpl"
+	c.Data["Temp"]="Temp"
+	c.Data["Name"]="name"
+	c.TplName="index.html"
 }
