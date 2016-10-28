@@ -3,28 +3,54 @@
 <head>
     <title>家的印记</title>
     <style>
+        body{
+        background-color: #FFE8BF;
+        margin-left:10px;
+        margin-right:10px;
+        }
         div{
         background-color: #FFE8BF;
         text-align: center;
         }
+
         img{
-
-          width: 100px;
-          height: 100px;
-          margin: auto;
-          border: 10px solid #BFFFBF;
-         float: right;
+         width: 100px;
+         height: 100px;
+         margin-right: 20px;
+         border: 10px solid #BFFFBF;
+         float: left;
          z-index:-1;
-
         }
-        p{
+
+        header{
         display:block;
-         margin: auto;
+        padding-top:25px;
+        padding-bottom:25px;
+        text-align:center;
+        font-size: 1.5em;
+        font-style: bold;
+        background-color:#B5FFB5;
+        }
+        #p_nav_left{
+        width:30%;
+        height:100%;
+        overflow:visible;
+        background-color:#96FF96;
         }
         #poet_silent{
-         width:250px;
-         height:120px;
-         margin: auto;
+         width:35%;
+         height:150px;
+         text-align:right;
+         padding-top:20px;
+         float:left;
+         display: inline-block;
+        }
+         #poet_img{
+         width:35%;
+         height:150px;
+         padding-top:20px;
+         float:left;
+         display: inline-block;
         }
     </style>
 </head>
@@ -32,15 +58,21 @@
     <script>
 
     </script>
-    <p>
-    <div id="poet_silent">
-        <img src="/static/img/ic_flowers.jpg">
+        <header>
+            诗以言情，词以达志
+        </header>
+        <p id="p_nav_left">
+            <ul>
+                <li>第一篇</li>
+             </ul>
+        </p>
+        <div id="poet_silent">
         绿丛中一点红，<br/>繁华里半份静。<br/>
-        风中自摇曳，<br/>枝头唯俏姿。<br/>
-        心寓野边花，<br/>心向天际蓝。<br/>
-
-    </div>
-    </p>
-
+        风中自摇曳，<br/> 枝头唯俏姿。<br/>
+        心寓野边花，<br/>心向天际蓝。
+        </div>
+        <div id="poet_img">
+            <img src="/static/img/ic_flowers.jpg">
+        </div>
 </body>
 </html>
