@@ -69,16 +69,30 @@
 
     </style>
 </head>
-<body onload="showDocumentUrl()">
+<body onload="showDocumentInfo()">
     <script>
 
-        function showDocumentUrl(){
+        function createDocumentInfoElement(info){
+            var e=null;
+            e=document.createElement("div");
+            e.style.color="#00ff00";
+            e.style.fontSize="1.5em";
+            e.innerHTML=info;
+            return e;
+        }
+        function showDocumentInfo(){
             var p=document.createElement("p");
-            var body=document.body;
-            var url=document.URL;
-            p.style.color="#00ff00"//字体颜色
-            p.innerHTML=url;
-            body.appendChild(p);
+            var urlElement=createDocumentInfoElement(document.URL);
+            var docTypeElement=createDocumentInfoElement(document.doctype);
+            var titleElement=createDocumentInfoElement(document.title);
+            var documentURIElement=createDocumentInfoElement(document.documentURI);
+            var arr=[urlElement,docTypeElement,titleElement,documentURIElement];
+            var len=arr.length;
+            for(i=0;i<len;i++){
+             p.appendChild(arr[i]);
+            }
+
+            document.body.appendChild(p);
         }
     </script>
         <header>
