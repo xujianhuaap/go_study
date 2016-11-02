@@ -88,11 +88,19 @@
             var documentURIElement=createDocumentInfoElement(document.documentURI);
             var arr=[urlElement,docTypeElement,titleElement,documentURIElement];
             var len=arr.length;
+
+            p.id="p_document_info";
             for(i=0;i<len;i++){
              p.appendChild(arr[i]);
             }
 
             document.body.appendChild(p);
+        }
+        function removeDocumentInfoElement(){
+            var p=document.getElementById("p_document_info");
+            if(p){
+                document.body.removeChild(p);
+            }
         }
     </script>
         <header>
@@ -115,12 +123,12 @@
                 行云，一位伟大的诗者，善于表达自己情感，寄情于山水。行云，一位伟大的诗者，善于表达自己情感，寄情于山水。
             </p>
         </div>
-        <div id="poet_content">
+        <div id="poet_content" onclick="showDocumentInfo()">
         绿丛中一点红，<br/>繁华里半份静。<br/>
         风中自摇曳，<br/> 枝头唯俏姿。<br/>
         心寓野边花，<br/>心向天际蓝。
         </div>
-        <div id="poet_img">
+        <div id="poet_img" onclick="removeDocumentInfoElement()">
             <img  src="/static/img/ic_flowers.jpg">
         </div>
 </body>
