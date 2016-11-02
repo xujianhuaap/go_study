@@ -31,13 +31,19 @@
         font-style: bold;
         background-color:#B5FFB5;
         }
-        #p_nav_left{
-        width:30%;
-        height:100%;
+        #poet_nav_left{
+        width:10%;
+        height:800px;
         overflow:visible;
-        background-color:#96FF96;
+        background-color:#00FF96;
+         float:left;
+         display: inline-block;
         }
-        #poet_silent{
+        #poet_production{
+        margin-top:20px;
+        text-align:left;
+        }
+        #poet_content{
          width:35%;
          height:150px;
          text-align:right;
@@ -52,27 +58,56 @@
          float:left;
          display: inline-block;
         }
+        #img_author{
+         width: 80px;
+         height: 80px;
+         margin-left: 20px;
+         margin-right:5px;
+         border: 8px solid #BFFFBF;
+        z-index:-1;
+        }
+
     </style>
 </head>
-<body>
+<body onload="showDocumentUrl()">
     <script>
 
+        function showDocumentUrl(){
+            var p=document.createElement("p");
+            var body=document.body;
+            var url=document.URL;
+            p.style.color="#00ff00"//字体颜色
+            p.innerHTML=url;
+            body.appendChild(p);
+        }
     </script>
         <header>
             诗以言情，词以达志
         </header>
-        <p id="p_nav_left">
+        <div id="poet_nav_left">
             <ul>
-                <li>第一篇</li>
+                <li>第1篇</li>
+                <li>第2篇</li>
+                <li>第3篇</li>
+                <li>第4篇</li>
+                <li>第5篇</li>
+                <li>第6篇</li>
+                <li>第7篇</li>
+                <li>第8篇</li>
+                <li>第9篇</li>
              </ul>
-        </p>
-        <div id="poet_silent">
+            <p id="poet_production">
+                <img id="img_author"src="/static/img/ic_flowers_ju.jpg" alt="作者简介">
+                行云，一位伟大的诗者，善于表达自己情感，寄情于山水。行云，一位伟大的诗者，善于表达自己情感，寄情于山水。
+            </p>
+        </div>
+        <div id="poet_content">
         绿丛中一点红，<br/>繁华里半份静。<br/>
         风中自摇曳，<br/> 枝头唯俏姿。<br/>
         心寓野边花，<br/>心向天际蓝。
         </div>
         <div id="poet_img">
-            <img src="/static/img/ic_flowers.jpg">
+            <img  src="/static/img/ic_flowers.jpg">
         </div>
 </body>
 </html>
