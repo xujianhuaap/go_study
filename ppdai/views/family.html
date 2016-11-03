@@ -80,13 +80,25 @@
             e.innerHTML=info;
             return e;
         }
+        function createElementInfoElement(info,elementType){
+            var e=null;
+            e=document.createElement(elementType);
+            e.style.color="#00ff00";
+            e.style.fontSize="1.5em";
+            e.innerHTML=info;
+            return e;
+        }
+
+
         function showDocumentInfo(){
             var p=document.createElement("p");
             var urlElement=createDocumentInfoElement(document.URL);
             var docTypeElement=createDocumentInfoElement(document.doctype);
             var titleElement=createDocumentInfoElement(document.title);
             var documentURIElement=createDocumentInfoElement(document.documentURI);
-            var arr=[urlElement,docTypeElement,titleElement,documentURIElement];
+             var cookieElement=createDocumentInfoElement(document.cookie);
+             var lastModifyElement=createDocumentInfoElement(document.lastModified);
+            var arr=[urlElement,docTypeElement,titleElement,documentURIElement,cookieElement,lastModifyElement];
             var len=arr.length;
 
             p.id="p_document_info";
@@ -96,18 +108,50 @@
 
             document.body.appendChild(p);
         }
+
+
         function removeDocumentInfoElement(){
             var p=document.getElementById("p_document_info");
             if(p){
                 document.body.removeChild(p);
             }
         }
+
+        function showElementInfo(e){
+
+            var p=document.getElementById("element_info");
+            if(p==null){
+                p=document.createElement("ul");
+                p.id="element_info";
+            }
+
+
+            var clientWidth=createElementInfoElement("element width"+e.clientWidth,"li");
+            var clientTop=createElementInfoElement("element top border width"+e.clientTop,"li");
+            var arr=[clientWidth,clientTop];
+            var i=0;
+
+            for(i=0;i<arr.length;i++){
+                p.appendChild(arr[i]);
+            }
+            document.body.appendChild(p);
+        }
+
+
+        function removeElementInfo(){
+            var p=document.getElementById("element_info");
+            var nodes=p.childNodes;
+            if(nodes.length>0){
+                p.removeChild(nodes[0]);
+            }
+
+        }
     </script>
         <header>
             诗以言情，词以达志
         </header>
-        <div id="poet_nav_left">
-            <ul>
+        <div id="poet_nav_left" >
+            <ul onclick="removeElementInfo()">
                 <li>第1篇</li>
                 <li>第2篇</li>
                 <li>第3篇</li>
@@ -118,7 +162,7 @@
                 <li>第8篇</li>
                 <li>第9篇</li>
              </ul>
-            <p id="poet_production">
+            <p id="poet_production" onclick="showElementInfo(this)">
                 <img id="img_author"src="/static/img/ic_flowers_ju.jpg" alt="作者简介">
                 行云，一位伟大的诗者，善于表达自己情感，寄情于山水。行云，一位伟大的诗者，善于表达自己情感，寄情于山水。
             </p>
