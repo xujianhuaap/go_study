@@ -118,17 +118,20 @@
         }
 
         function showElementInfo(e){
-
-            var p=document.getElementById("element_info");
+            var id="element_info"+e.id;
+            var p=document.getElementById(id);
             if(p==null){
                 p=document.createElement("ul");
-                p.id="element_info";
+                p.id=id;
             }
 
 
             var clientWidth=createElementInfoElement("element width"+e.clientWidth,"li");
             var clientTop=createElementInfoElement("element top border width"+e.clientTop,"li");
-            var arr=[clientWidth,clientTop];
+
+            var atrFirstName=createElementInfoElement("element first atr name \t"+e.attributes[0].name,"li");
+            var atrLength=createElementInfoElement("element atr length \t"+e.attributes.length,"li");
+            var arr=[clientWidth,clientTop,atrFirstName,atrLength];
             var i=0;
 
             for(i=0;i<arr.length;i++){
@@ -138,11 +141,16 @@
         }
 
 
-        function removeElementInfo(){
-            var p=document.getElementById("element_info");
+        function removeElementInfo(e){
+            var id="element_info"+e.id;
+            var p=document.getElementById(id);
             var nodes=p.childNodes;
+            var i=0;
             if(nodes.length>0){
-                p.removeChild(nodes[0]);
+                for(i=0;i<nodes.length;i++){
+                 p.removeChild(nodes[i]);
+                }
+
             }
 
         }
@@ -151,7 +159,7 @@
             诗以言情，词以达志
         </header>
         <div id="poet_nav_left" >
-            <ul onclick="removeElementInfo()">
+            <ul>
                 <li>第1篇</li>
                 <li>第2篇</li>
                 <li>第3篇</li>
@@ -162,12 +170,12 @@
                 <li>第8篇</li>
                 <li>第9篇</li>
              </ul>
-            <p id="poet_production" onclick="showElementInfo(this)">
+            <p id="poet_production" onmouseenter="showElementInfo(this)" onmouseleave="removeElementInfo(this)">
                 <img id="img_author"src="/static/img/ic_flowers_ju.jpg" alt="作者简介">
                 行云，一位伟大的诗者，善于表达自己情感，寄情于山水。行云，一位伟大的诗者，善于表达自己情感，寄情于山水。
             </p>
         </div>
-        <div id="poet_content" onclick="showDocumentInfo()">
+        <div id="poet_content"  onmouseenter="showElementInfo(this)" onmouseleave="removeElementInfo(this)">
         绿丛中一点红，<br/>繁华里半份静。<br/>
         风中自摇曳，<br/> 枝头唯俏姿。<br/>
         心寓野边花，<br/>心向天际蓝。
