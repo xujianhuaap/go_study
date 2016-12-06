@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/xujianhuaap/go_studty/ppdai/controllers"
+	"github.com/xujianhuaap/gostudy/ppdai/controllers"
 )
 
 func init() {
