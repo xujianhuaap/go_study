@@ -8,7 +8,7 @@ type MainController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
+func (c *MainController) Info() {
 
 	c.Data["Website"] = "xujianhuaap.io"
 	c.Data["Email"] = "xujianhuaap@gmail.com"

@@ -6,10 +6,15 @@ import (
 	_"github.com/xujianhuaap/gostudy/ppdai/routers"
 )
 func main() {
-	beego.Run("127.0.0.1:8080")
+	beego.Run("192.168.23.92:8080")
 }
 
 func init() {
+	beego.BConfig.WebConfig.EnableXSRF=false
+	beego.BConfig.WebConfig.XSRFKey="ppdai123456"
+	beego.BConfig.WebConfig.XSRFExpire=3600
 	beego.BConfig.WebConfig.DirectoryIndex=true
+	beego.BConfig.WebConfig.ViewsPath="views"
+
 	beego.SetStaticPath("/apk","apk")
 }
