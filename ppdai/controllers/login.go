@@ -14,6 +14,8 @@ func ( c *LoginController) Get()  {
 	var url=c.Ctx.Request.URL.Path
 	if strings.EqualFold(url,api.LOGIN){
 		c.TplName="login.html"
+	}else if strings.EqualFold(url,api.REGISTER){
+		c.TplName="register.html"
 	}
 }
 
@@ -25,7 +27,16 @@ func (c *LoginController)Post()  {
 		if(strings.EqualFold(username,"xu")&& strings.EqualFold(userpassword,"123456")){
 			c.Ctx.WriteString("登录成功")
 		}else {
-			c.Ctx.WriteString("登录失败")
+			c.Ctx.Redirect(200,api.LOGIN)
+		}
+	}else if strings.EqualFold(url,api.REGISTER_SUBNIT){
+		username:=c.GetString("user_name","")
+		userpassword:=c.GetString("user_password","")
+
+		if(len(username)>0&& len(userpassword)>8){
+			c.Ctx.WriteString("注册成功")
+		}else {
+			c.Ctx.WriteString("注册失败")
 		}
 	}
 
