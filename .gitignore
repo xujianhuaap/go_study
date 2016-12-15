@@ -2,4 +2,4 @@
 .idea
 ppdai/apk
 *.exe
-go_codes.iml
+*.iml
