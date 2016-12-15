@@ -15,6 +15,7 @@ func init() {
 	beego.BConfig.WebConfig.XSRFExpire=3600
 	beego.BConfig.WebConfig.DirectoryIndex=true
 	beego.BConfig.WebConfig.ViewsPath="views"
-
+	beego.BConfig.WebConfig.Session.SessionOn=true
+	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
 	beego.SetStaticPath("/apk","apk")
 }
