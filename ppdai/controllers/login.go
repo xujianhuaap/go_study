@@ -16,7 +16,7 @@ func ( c *LoginController) Get()  {
 	sess,_:=globalSessions.SessionStart(c.Ctx.ResponseWriter,c.Ctx.Request)
 	defer sess.SessionRelease(c.Ctx.ResponseWriter)
 	username:=sess.Get("username")
-	if(username){
+	if(username==nil){
 
 	}else {
 		sess.Set("username",c.Ctx.Request.Form["username"])
