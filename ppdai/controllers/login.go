@@ -4,13 +4,23 @@ import (
 	"github.com/astaxie/beego"
 	"strings"
 	"github.com/xujianhuaap/gostudy/ppdai/api"
+	"github.com/astaxie/beego/session"
 )
-
+var globalSessions *session.Manager
 type LoginController struct {
 	beego.Controller
 }
 
 func ( c *LoginController) Get()  {
+
+	sess,_:=globalSessions.SessionStart(c.Ctx.ResponseWriter,c.Ctx.Request)
+	defer sess.SessionRelease(c.Ctx.ResponseWriter)
+	username:=sess.Get("username")
+	if(username){
+
+	}else {
+		sess.Set("username",c.Ctx.Request.Form["username"])
+	}
 	var url=c.Ctx.Request.URL.Path
 	if strings.EqualFold(url,api.LOGIN){
 		c.TplName="login.html"
@@ -43,3 +53,9 @@ func (c *LoginController)Post()  {
 
 }
 
+
+func init() {
+		sessions:=beego.BConfig.WebConfig.Session
+		globalSessions, _ = session.NewManager("mysql", &session.ManagerConfig{"cookieName":"gosessionid","gclifetime":sessions.SessionGCMaxLifetime,"ProviderConfig":sessions.SessionProviderConfig})
+		go globalSessions.GC()
+	}
