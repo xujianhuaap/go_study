@@ -6,7 +6,7 @@ import (
 	_"github.com/xujianhuaap/gostudy/ppdai/routers"
 )
 func main() {
-	beego.Run("192.168.23.92:8080")
+	beego.Run()
 }
 
 func init() {
@@ -17,5 +17,6 @@ func init() {
 	beego.BConfig.WebConfig.ViewsPath="views"
 	beego.BConfig.WebConfig.Session.SessionOn=true
 	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig="xujianhua:123456@localhost/ppdai?charset=utf8"
 	beego.SetStaticPath("/apk","apk")
 }

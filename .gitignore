@@ -3,3 +3,5 @@
 ppdai/apk
 *.exe
 *.iml
+ppdai/test.html
+ppdai/views/index.html
