@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"strings"
 	"github.com/xujianhuaap/gostudy/ppdai/api"
+	"encoding/base64"
 )
 
 type LoginController struct {
@@ -11,6 +12,13 @@ type LoginController struct {
 }
 
 func ( c *LoginController) Get()  {
+	secret:=base64.StdEncoding.EncodeToString("ppdai123")
+	cookie,_:=c.GetSecureCookie(secret,"login")
+	if(cookie){
+
+	}else {
+		c.SetSession()
+	}
 	var url=c.Ctx.Request.URL.Path
 	if strings.EqualFold(url,api.LOGIN){
 		c.TplName="login.html"

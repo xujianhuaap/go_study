@@ -17,5 +17,7 @@ func init() {
 	beego.BConfig.WebConfig.ViewsPath="views"
 	beego.BConfig.WebConfig.Session.SessionOn=true
 	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
+	beego.BConfig.WebConfig.Session.SessionCookieLifeTime=0//用户关闭浏览器的时候就可以关闭cookie了
 	beego.SetStaticPath("/apk","apk")
+
 }
