@@ -17,6 +17,11 @@ func init() {
 	beego.BConfig.WebConfig.DirectoryIndex=true
 	beego.BConfig.WebConfig.ViewsPath="views"
 
+	beego.AppConfig.String("mysqluser")="xujianhua"
+	beego.AppConfig.String("mysqlpass")="123456"
+	beego.AppConfig.String("mysqlurl")="127.0.0.1"
+	beego.AppConfig.String("mysqldb")="ppdai"
+
 	beego.BConfig.WebConfig.Session.SessionOn=true
 	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig="xujianhua:123456@localhost/ppdai?charset=utf8"
