@@ -5,6 +5,7 @@ import (
 	"strings"
 	"github.com/xujianhuaap/gostudy/ppdai/api"
 	"github.com/astaxie/beego/session"
+	"path/filepath"
 )
 var globalSessions *session.Manager
 type LoginController struct {
@@ -55,7 +56,19 @@ func (c *LoginController)Post()  {
 
 
 func init() {
-		sessions:=beego.BConfig.WebConfig.Session
-		globalSessions, _ = session.NewManager("mysql", &session.ManagerConfig{"cookieName":"gosessionid","gclifetime":sessions.SessionGCMaxLifetime,"ProviderConfig":sessions.SessionProviderConfig})
+
+		conf := new(session.ManagerConfig)
+
+		conf.CookieName = beego.BConfig.WebConfig.Session.SessionName
+		conf.EnableSetCookie = beego.BConfig.WebConfig.Session.SessionAutoSetCookie
+		conf.Gclifetime = beego.BConfig.WebConfig.Session.SessionGCMaxLifetime
+		conf.Secure = beego.BConfig.Listen.EnableHTTPS
+		conf.CookieLifeTime = beego.BConfig.WebConfig.Session.SessionCookieLifeTime
+		conf.ProviderConfig = filepath.ToSlash(beego.BConfig.WebConfig.Session.SessionProviderConfig)
+		conf.Domain = beego.WebConfig.Session.SessionDomain
+		conf.EnableSidInHttpHeader = beego.BConfig.WebConfig.Session.EnableSidInHttpHeader
+		conf.SessionNameInHttpHeader = beego.BConfig.WebConfig.Session.SessionNameInHttpHeader
+		conf.EnableSidInUrlQuery = beego.BConfig.WebConfig.Session.EnableSidInUrlQuery
+		globalSessions, _ = session.NewManager("mysql", conf)
 		go globalSessions.GC()
 	}
