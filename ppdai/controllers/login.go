@@ -33,15 +33,18 @@ func ( c *LoginController) Get()  {
 func (c *LoginController)Post()  {
 	var err error
 	db, err = sql.Open("mysql", "root:123456@/ppdai")
+	defer db.Close()
 	if err==nil{
 		var url=c.Ctx.Request.URL.Path
 		if strings.EqualFold(url,api.LOGIN_AUTH){
 			username:=c.GetString("user_name","")
 			userpassword:=c.GetString("user_password","")
-			if(strings.EqualFold(username,"xu")&& strings.EqualFold(userpassword,"123456")){
-				c.Ctx.WriteString("登录成功")
+
+			isRegister:=queryUserIsRegister(username,userpassword,db)
+			if(isRegister){
+				c.TplName="index.html"
 			}else {
-				c.Ctx.Redirect(200,api.LOGIN)
+				c.Ctx.Redirect(301,api.LOGIN)
 			}
 		}else if strings.EqualFold(url,api.REGISTER_SUBNIT){
 			username:=c.GetString("user_name","")
@@ -49,6 +52,7 @@ func (c *LoginController)Post()  {
 			isRegister:=queryUserIsRegister(username,userpassword,db)
 			if(!isRegister){
 				stmt,err:=db.Prepare("INSERT user SET name=?,password=?,age=?,gender=?")
+
 				if(err!=nil){
 					c.Ctx.WriteString(err.Error())
 				}else {
@@ -62,7 +66,7 @@ func (c *LoginController)Post()  {
 
 				}
 			}else {
-				c.TplName="index.html"
+				c.Ctx.Redirect(301,api.LOGIN)
 			}
 
 		}
