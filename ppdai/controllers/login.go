@@ -11,7 +11,7 @@ var globalSessions *session.Manager
 type LoginController struct {
 	beego.Controller
 }
-
+var db *sql.DB
 func ( c *LoginController) Get()  {
 
 	//sess,_:=globalSessions.SessionStart(c.Ctx.ResponseWriter,c.Ctx.Request)
@@ -31,7 +31,8 @@ func ( c *LoginController) Get()  {
 }
 
 func (c *LoginController)Post()  {
-	db, err:= sql.Open("mysql", "root:123456@/ppdai")
+	var err error
+	db, err = sql.Open("mysql", "root:123456@/ppdai")
 	if err==nil{
 		var url=c.Ctx.Request.URL.Path
 		if strings.EqualFold(url,api.LOGIN_AUTH){
@@ -45,25 +46,49 @@ func (c *LoginController)Post()  {
 		}else if strings.EqualFold(url,api.REGISTER_SUBNIT){
 			username:=c.GetString("user_name","")
 			userpassword:=c.GetString("user_password","")
-			stmt,err:=db.Prepare("INSERT user SET name=?,password=?,age=?,gender=?")
-			if(err!=nil){
-				c.Ctx.WriteString(err.Error())
-			}else {
-				_,err=stmt.Exec(username,userpassword,26,1)
-
+			isRegister:=queryUserIsRegister(username,userpassword,db)
+			if(!isRegister){
+				stmt,err:=db.Prepare("INSERT user SET name=?,password=?,age=?,gender=?")
 				if(err!=nil){
-					c.Ctx.WriteString("注册失败")
+					c.Ctx.WriteString(err.Error())
 				}else {
-					c.Ctx.WriteString("注册成功")
-				}
+					_,err=stmt.Exec(username,userpassword,26,1)
 
+					if(err!=nil){
+						c.Ctx.WriteString("注册失败")
+					}else {
+						c.Ctx.WriteString("注册成功")
+					}
+
+				}
+			}else {
+				c.TplName="index.html"
 			}
+
 		}
 	}else {
 		c.Ctx.WriteString("22222")
 	}
 }
+func queryUserIsRegister(user_name string ,user_password string,db*sql.DB) bool{
 
+	stmt,err:=db.Prepare("select id from user where name=? and password=?")
+	if(err!=nil){
+		beego.BeeLogger.Debug("stmt error %v",err.Error())
+		return false
+	}
+	rows,err:=stmt.Query(user_name,user_password)
+	defer rows.Close()
+	if(err!=nil){
+		beego.BeeLogger.Debug("stmt error %v",err.Error())
+		return false
+	}
+	if(rows.Next()){
+		return true
+	}
+
+	return false
+}
 
 //func init() {
 //
