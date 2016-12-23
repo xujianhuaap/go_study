@@ -29,11 +29,7 @@ func init() {
 	//beego.AppConfig.String("mysqlurl")="127.0.0.1"
 	//beego.AppConfig.String("mysqldb")="ppdai"
 
-	//beego.BConfig.WebConfig.Session.SessionOn=true
-	//beego.BConfig.WebConfig.Session.SessionProvider="mysql"
-	//beego.BConfig.WebConfig.Session.SessionProviderConfig="xujianhua:123456@localhost/ppdai?charset=utf8"
-	//beego.BConfig.WebConfig.Session.SessionCookieLifeTime=0//用户关闭浏览器的时候就可以关闭cookie了
-	//beego.BConfig.WebConfig.Session.SessionDomain="xjh"
+
 
 	beego.SetStaticPath("/apk","apk")
 
