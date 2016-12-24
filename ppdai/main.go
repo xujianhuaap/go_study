@@ -4,8 +4,6 @@ import (
 	"github.com/astaxie/beego"
 
 	_"github.com/xujianhuaap/gostudy/ppdai/routers"
-	 _ "github.com/go-sql-driver/mysql"
-
 	"database/sql"
 )
 
