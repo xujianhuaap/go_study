@@ -14,6 +14,10 @@ func main() {
 
 }
 
+type SessionData struct {
+	Token string
+}
+
 func init() {
 
 	beego.BConfig.WebConfig.EnableXSRF=false
@@ -26,9 +30,6 @@ func init() {
 	//beego.AppConfig.String("mysqlpass")="123456"
 	//beego.AppConfig.String("mysqlurl")="127.0.0.1"
 	//beego.AppConfig.String("mysqldb")="ppdai"
-
-
-
 	beego.SetStaticPath("/apk","apk")
 
 }

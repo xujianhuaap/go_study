@@ -8,9 +8,13 @@ import (
 	_ "github.com/astaxie/beego/session/mysql"
 	"database/sql"
 	"path/filepath"
+	"encoding/gob"
 )
 type LoginController struct {
 	beego.Controller
+}
+type SessionData struct {
+	Token string
 }
 var db *sql.DB
 var globalSessions *session.Manager
@@ -21,18 +25,32 @@ func ( c *LoginController) Get()  {
 	sess,err:=globalSessions.SessionStart(responseWriter,request)
 	if(err==nil&&sess!=nil){
 		defer sess.SessionRelease(c.Ctx.ResponseWriter)
-		username:=sess.Get("username")
-		if(username==nil){
-			sess.Set("username",c.Ctx.Request.Form["username"])
+		data:=sess.Get("session_data")
+		if(data!=nil){
+			sessionData,ok:=data.(SessionData)
+			if(ok){
+				beego.BeeLogger.Debug("ppdai token %v",sessionData)
+			}
+			if(sessionData.Token==""){
+				c.TplName="index.html"
+			}else {
+				err=sess.Set("session_data",SessionData{Token:"123456"})
+			}
+			if err!=nil{
+				panic(err)
+			}
+
 		}else {
 
+			var url=c.Ctx.Request.URL.Path
+			if strings.EqualFold(url,api.LOGIN){
+				c.TplName="login.html"
+			}else if strings.EqualFold(url,api.REGISTER){
+				c.TplName="register.html"
+			}
 		}
-		var url=c.Ctx.Request.URL.Path
-		if strings.EqualFold(url,api.LOGIN){
-			c.TplName="login.html"
-		}else if strings.EqualFold(url,api.REGISTER){
-			c.TplName="register.html"
-		}
+
+
 	}else {
 		beego.BeeLogger.Debug("err :%v",err.Error())
 	}
@@ -106,6 +124,19 @@ func queryUserIsRegister(user_name string ,user_password string,db*sql.DB) bool{
 
 func init() {
 		var err error
+
+		beego.BConfig.WebConfig.Session.SessionOn=true
+		beego.BConfig.WebConfig.Session.SessionProvider="mysql"
+		beego.BConfig.WebConfig.Session.SessionProviderConfig="root:123456@/ppdai"
+		beego.BConfig.WebConfig.Session.SessionCookieLifeTime=30
+		beego.BConfig.WebConfig.Session.SessionDomain=""
+		beego.BConfig.WebConfig.Session.SessionName = "ppdai"
+		beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600
+		beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true
+		beego.BConfig.WebConfig.Session.EnableSidInHttpHeader=true
+		beego.BConfig.WebConfig.Session.SessionNameInHttpHeader="Ppdai"
+
+		gob.RegisterName("session_data",SessionData{})
 		conf := new(session.ManagerConfig)
 
 		conf.CookieName = beego.BConfig.WebConfig.Session.SessionName
@@ -118,7 +149,7 @@ func init() {
 		conf.EnableSidInHttpHeader = beego.BConfig.WebConfig.Session.EnableSidInHttpHeader
 		conf.SessionNameInHttpHeader = beego.BConfig.WebConfig.Session.SessionNameInHttpHeader
 		conf.EnableSidInUrlQuery = beego.BConfig.WebConfig.Session.EnableSidInUrlQuery
-
+		beego.BeeLogger.Debug("session manager conf: %v",beego.BConfig.WebConfig.Session.SessionProviderConfig)
 		globalSessions, err= session.NewManager("mysql", conf)
 		if(err!=nil){
 			beego.BeeLogger.Debug("login init: %v",err.Error())
