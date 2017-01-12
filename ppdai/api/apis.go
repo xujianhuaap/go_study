@@ -6,3 +6,5 @@ const REGISTER  = "/register"
 const REGISTER_SUBNIT  = "/register/submit"
 const LOGIN_AUTH_SUCCESS = "/login/auth/success";
 const LOGIN_AUTH_FAILURE = "/login/auth/failure";
+
+const INDEX = "/index";

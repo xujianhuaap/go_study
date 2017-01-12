@@ -17,61 +17,31 @@ var db *sql.DB
 var globalSessions *session.Manager
 
 func ( c *LoginController) Get()  {
-	responseWriter:=c.Ctx.ResponseWriter.ResponseWriter
-	request:=c.Ctx.Request
-	sess,err:=globalSessions.SessionStart(responseWriter,request)
-	beego.BeeLogger.Debug("session sid :%v",sess.SessionID())
-	if(err==nil&&sess!=nil){
-		defer sess.SessionRelease(c.Ctx.ResponseWriter)
-		data:=sess.Get("user")
-		beego.BeeLogger.Debug("session_data :%+v",data)
-		if(data!=nil){
-			c.TplName="index.html"
-			if err!=nil{
-				panic(err)
-			}
-
-		}else {
-			err=sess.Set("user","123456")
-			if(err!=nil){
-				beego.BeeLogger.Debug("err :%v",err.Error())
-			}
-			var url=c.Ctx.Request.URL.Path
-			if strings.EqualFold(url,api.LOGIN){
-				c.TplName="login.html"
-			}else if strings.EqualFold(url,api.REGISTER){
-				c.TplName="register.html"
-			}
-		}
 
 
-	}else {
-		beego.BeeLogger.Debug("err :%v",err.Error())
+	var url=c.Ctx.Request.URL.Path
+	if strings.EqualFold(url,api.LOGIN){
+		c.TplName="login.html"
+	}else if strings.EqualFold(url,api.REGISTER){
+		c.TplName="register.html"
 	}
+
 
 }
 
 func (c *LoginController)Post()  {
-	var err error
-	db, err = sql.Open("mysql", "root:123456@/ppdai")
-	defer db.Close()
+
+	responseWriter:=c.Ctx.ResponseWriter.ResponseWriter
+	request:=c.Ctx.Request
+
+	db, err := sql.Open("mysql", "root:123456@/ppdai")
+	//defer db.Close()
 	if err==nil{
 		var url=c.Ctx.Request.URL.Path
-		if strings.EqualFold(url,api.LOGIN_AUTH){
-			username:=c.GetString("user_name","")
-			userpassword:=c.GetString("user_password","")
-
-			isRegister:=queryUserIsRegister(username,userpassword,db)
-
-			if(isRegister){
-				c.TplName="index.html"
-			}else {
-				c.Ctx.Redirect(301,api.LOGIN)
-			}
-		}else if strings.EqualFold(url,api.REGISTER_SUBNIT){
-			username:=c.GetString("user_name","")
-			userpassword:=c.GetString("user_password","")
-			isRegister:=queryUserIsRegister(username,userpassword,db)
+		username:=c.GetString("user_name","")
+		userpassword:=c.GetString("user_password","")
+		isRegister:=queryUserIsRegister(username,userpassword,db)
+		if strings.EqualFold(url,api.REGISTER_SUBNIT){
 			if(!isRegister){
 				stmt,err:=db.Prepare("INSERT user SET name=?,password=?,age=?,gender=?")
 
@@ -87,14 +57,31 @@ func (c *LoginController)Post()  {
 					}
 
 				}
+
+
+				sess,err:=globalSessions.SessionStart(responseWriter,request)
+				beego.BeeLogger.Debug("session sid :%v",sess.SessionID())
+				if(err==nil&&sess!=nil){
+
+					err=sess.Set("user",username)
+					beego.BeeLogger.Debug("user [%v] isRegistered",username)
+					if(err!=nil){
+						beego.BeeLogger.Debug("err :%v",err.Error())
+					}
+					 sess.SessionRelease(responseWriter)
+				}else {
+					beego.BeeLogger.Debug("err :%v",err.Error())
+				}
 			}else {
-				c.Ctx.Redirect(301,api.LOGIN)
+				c.Ctx.Redirect(301,api.INDEX)
 			}
 
 		}
 	}else {
 		c.Ctx.WriteString("22222")
 	}
+
+
 }
 func queryUserIsRegister(user_name string ,user_password string,db*sql.DB) bool{
 
@@ -137,11 +124,11 @@ func init() {
 		conf.EnableSetCookie = beego.BConfig.WebConfig.Session.SessionAutoSetCookie
 		conf.Gclifetime = beego.BConfig.WebConfig.Session.SessionGCMaxLifetime
 		conf.Maxlifetime=300
-		conf.SessionIDLength=32
+		conf.SessionIDLength=128
 		conf.Secure =true
 		conf.CookieLifeTime = beego.BConfig.WebConfig.Session.SessionCookieLifeTime
 		conf.ProviderConfig = filepath.ToSlash(beego.BConfig.WebConfig.Session.SessionProviderConfig)
-		conf.Domain = "192.168.31.31"
+		conf.Domain = "192.168.51.163"
 		conf.EnableSidInHttpHeader = beego.BConfig.WebConfig.Session.EnableSidInHttpHeader
 		conf.SessionNameInHttpHeader = beego.BConfig.WebConfig.Session.SessionNameInHttpHeader
 		conf.EnableSidInUrlQuery = true
