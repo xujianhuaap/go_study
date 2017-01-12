@@ -77,6 +77,30 @@ func (c *LoginController)Post()  {
 			}
 
 		}
+
+		if strings.EqualFold(url,api.LOGIN_AUTH){
+			if(!isRegister){
+				c.Ctx.Redirect(301,api.REGISTER)
+			}else {
+
+				sess,err:=globalSessions.SessionStart(responseWriter,request)
+				beego.BeeLogger.Debug("session sid :%v",sess.SessionID())
+				if(err==nil&&sess!=nil){
+
+					err=sess.Set("user",username)
+					beego.BeeLogger.Debug("user [%v] isRegistered",username)
+					if(err!=nil){
+						beego.BeeLogger.Debug("err :%v",err.Error())
+					}
+					sess.SessionRelease(responseWriter)
+				}else {
+					beego.BeeLogger.Debug("err :%v",err.Error())
+				}
+				c.Ctx.Redirect(301,api.INDEX)
+			}
+
+		}
+
 	}else {
 		c.Ctx.WriteString("22222")
 	}
