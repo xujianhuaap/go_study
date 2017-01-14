@@ -2,12 +2,9 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-
 	_"github.com/xujianhuaap/gostudy/ppdai/routers"
-	"database/sql"
 )
 
-var db *sql.DB
 func main() {
 	beego.Run()
 
@@ -26,10 +23,18 @@ func init() {
 	beego.BConfig.WebConfig.DirectoryIndex=true
 	beego.BConfig.WebConfig.ViewsPath="views"
 
-	//beego.AppConfig.String("mysqluser")="xujianhua"
-	//beego.AppConfig.String("mysqlpass")="123456"
-	//beego.AppConfig.String("mysqlurl")="127.0.0.1"
-	//beego.AppConfig.String("mysqldb")="ppdai"
+	beego.BConfig.WebConfig.Session.SessionOn=true//
+	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
+	beego.BConfig.WebConfig.Session.SessionProviderConfig="root:123456@/ppdai"
+	beego.BConfig.WebConfig.Session.SessionCookieLifeTime=180
+	beego.BConfig.WebConfig.Session.SessionDomain="192.168.51.163"
+	beego.BConfig.WebConfig.Session.SessionName = "ppdai"
+	beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600
+	beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true
+	beego.BConfig.WebConfig.Session.EnableSidInHttpHeader=true
+	beego.BConfig.WebConfig.Session.EnableSidInUrlQuery=true
+	beego.BConfig.WebConfig.Session.SessionNameInHttpHeader="Ppdai"
+
 	beego.SetStaticPath("/apk","apk")
 
 }

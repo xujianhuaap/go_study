@@ -12,7 +12,7 @@ type BusinessController struct {
 func ( c *BusinessController) Get()  {
 	responseWriter:=c.Ctx.ResponseWriter.ResponseWriter
 	request:=c.Ctx.Request
-	sess,err:=globalSessions.SessionStart(responseWriter,request)
+	sess,err:=beego.GlobalSessions.SessionStart(responseWriter,request)
 	beego.BeeLogger.Debug("session sid :%v",sess.SessionID())
 	if(err==nil&&sess!=nil){
 		data:=sess.Get("user")

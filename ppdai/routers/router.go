@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/xujianhuaap/gostudy/ppdai/controllers"
 	"github.com/xujianhuaap/gostudy/ppdai/api"
-	_"github.com/astaxie/beego/session/mysql"
 )
 
 func init() {
