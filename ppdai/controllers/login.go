@@ -103,7 +103,7 @@ func (c *LoginController)Post()  {
 }
 func queryUserIsRegister(user_name string ,user_password string,db*sql.DB) bool{
 
-	row:=db.QueryRow("select id from user where `name` = ?",user_name)
+	row:=db.QueryRow("select id from user where `name` = ? and password = ? ",user_name,user_password)
 	var id int16
 	if(row!=nil){
 		row.Scan(&id)
