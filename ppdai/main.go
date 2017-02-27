@@ -27,7 +27,7 @@ func init() {
 	beego.BConfig.WebConfig.Session.SessionProvider="mysql"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig="root:123456@/ppdai"
 	beego.BConfig.WebConfig.Session.SessionCookieLifeTime=180
-	beego.BConfig.WebConfig.Session.SessionDomain="192.168.51.163"
+	beego.BConfig.WebConfig.Session.SessionDomain="192.168.51.196"
 	beego.BConfig.WebConfig.Session.SessionName = "ppdai"
 	beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600
 	beego.BConfig.WebConfig.Session.SessionAutoSetCookie = true
